@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "owner": 2,
+    "created_on": "DateTime",
+    "state": "new",
+    "status": "available",
+    "price": 1030,
+    "manufacture": "Ford",
+    "model": "Ford Fiesta",
+    "body_type": "sport car",
+    "description": "this car is amazing with 500kg and it has a discount"
+  },
+  {
+    "id": 2,
+    "owner": 4,
+    "created_on": "DateTime",
+    "state": "used",
+    "status": "available",
+    "price": 1460,
+    "manufacture": "Toyota",
+    "model": "Camry",
+    "body_type": "sport car",
+    "description": "this car is amazing with 500kg and it has a discount"
+  },
+  {
+    "id": 3,
+    "owner": 3,
+    "created_on": "DateTime",
+    "state": "new",
+    "status": "sold",
+    "price": 1700,
+    "manufacture": "BMW",
+    "model": "Serie",
+    "body_type": "car",
+    "description": "this car is amazing with 500kg and it has a discount"
+  },
+  {
+    "id": 4,
+    "owner": 2,
+    "created_on": "DateTime",
+    "state": "new",
+    "status": "available",
+    "price": 2000,
+    "manufacture": "Volswagen",
+    "model": "Golf",
+    "body_type": "car",
+    "description": "this car is amazing with 500kg and it has a discount"
+  },
+  {
+    "id": 5,
+    "owner": 4,
+    "created_on": "2019-5-23 8:33:56",
+    "state": "used",
+    "status": "sold",
+    "price": 2500.87,
+    "manufacture": "Benz",
+    "model": "C-class",
+    "body_type": "Trunk",
+    "description": "this car is amazing with 500kg and it has a discount"
+  }
+]
