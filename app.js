@@ -15,7 +15,7 @@ app.use('/', routes);
 // accept static files
 app.use(express.static(`${__dirname}/`));
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(400).json({
     status: 400,
     message: 'Bad request',
