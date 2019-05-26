@@ -1,10 +1,8 @@
 import fs from 'fs';
 import Joi from 'joi';
-<<<<<<< Updated upstream
-=======
+
 import { validateCar } from '../middleware/validation';
 import cloudinary from 'cloudinary';
->>>>>>> Stashed changes
 
 
 cloudinary.config({
@@ -12,6 +10,7 @@ cloudinary.config({
   api_key: "929645198658237",
   api_secret: "5nQhn1XWTRuwfrfwxUZ1rj-Q_uw"
 });
+
 
 //including josn file that serves as database
 const carsDb = fs.readFileSync('models/cars.json', 'utf-8');
@@ -77,7 +76,6 @@ async create(req, res) {
 	var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
 	var DateTime = date+' '+time;
 
-<<<<<<< Updated upstream
 	validateCar(req.body)
     .then(() => {
       const newCar = {
@@ -105,11 +103,10 @@ async create(req, res) {
     })
     .catch((error) => {
       res.status(400).json({
-=======
+
 	const { error } = Joi.validate(req.body, validateCar);
 	if (error) {
 		res.status(400).json({
->>>>>>> Stashed changes
         status: 400,
         error: error.details[0].message,
       });

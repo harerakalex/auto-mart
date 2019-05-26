@@ -3,7 +3,7 @@ import Order from '../../controllers/order';
 
 const router = express.Router();
 
-// create instance for the order class 
+// create instance for the order class
 const order = new Order();
 
 // route for specific order
