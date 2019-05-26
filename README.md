@@ -4,6 +4,6 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/harerakalex/auto-mart/badge.svg?branch=develop)](https://coveralls.io/github/harerakalex/auto-mart?branch=develop)
 
-online shopping app for cars, this is a market place app where one can make ads and others can be able to make orther of that car.
+online shopping app for cars, this is a market place app where one can make ads and others can be able to make order of that car.
 
 
