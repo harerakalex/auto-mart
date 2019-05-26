@@ -7,3 +7,11 @@
 online shopping app for cars, this is a market place app where one can make ads and others can be able to make order of that car.
 
 
+# Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Installation, Running and deployment for more details. This Application is built in nodejs with es6.
+
+## Prerequisites
+download the latest version of node js>
+
+Questioner is built in node js with ES6 format. to get up the application running you need to install the following
