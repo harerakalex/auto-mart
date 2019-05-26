@@ -1,5 +1,17 @@
 import fs from 'fs';
 import Joi from 'joi';
+<<<<<<< Updated upstream
+=======
+import { validateCar } from '../middleware/validation';
+import cloudinary from 'cloudinary';
+>>>>>>> Stashed changes
+
+
+cloudinary.config({
+  cloud_name: "dnuqiengg",
+  api_key: "929645198658237",
+  api_secret: "5nQhn1XWTRuwfrfwxUZ1rj-Q_uw"
+});
 
 //including josn file that serves as database
 const carsDb = fs.readFileSync('models/cars.json', 'utf-8');
@@ -59,24 +71,13 @@ async fetchId(req, res) {
  * @param {*} res 
  */
 async create(req, res) {
-	const validateCar = (car) => {
-		const schema = {
-			owner: Joi.number().integer().required(),
-			manufacture: Joi.string().alphanum().min(3).required(),
-			model: Joi.string().min(3).required(),
-			price: Joi.number().precision(4).positive().min(2).required(),
-			state: Joi.string().min(3).required(),
-			body_type: Joi.string().min(3).required(),
-			description: Joi.string().max(150).required(),
-		};
-		return Joi.validate(car, schema);
-	};
 	//Getting Actual time
 	var today =new Date();
 	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
 	var DateTime = date+' '+time;
 
+<<<<<<< Updated upstream
 	validateCar(req.body)
     .then(() => {
       const newCar = {
@@ -104,10 +105,50 @@ async create(req, res) {
     })
     .catch((error) => {
       res.status(400).json({
+=======
+	const { error } = Joi.validate(req.body, validateCar);
+	if (error) {
+		res.status(400).json({
+>>>>>>> Stashed changes
         status: 400,
         error: error.details[0].message,
       });
-    });
+	}
+	else{
+		//image upload
+		let filename = req.files.files.path;
+		console.log(filename); 
+		cloudinary.v2.uploader.upload(filename,{tags:'basic_sample'},function(err,image){
+			if (err){ console.warn(err);}
+			else{
+				const imageUrl = image.secure_url;
+				const newCar = {
+					id: parseDb.length + 1,
+					owner: req.body.owner,
+					created_on: DateTime,
+					state: req.body.state,
+					status: 'available',
+					price: req.body.price,
+					manufacture: req.body.manufacture,
+					model: req.body.model,
+					body_type: req.body.body_type,
+					description: req.body.description,
+					image: imageUrl
+				};
+
+				parseDb.push(newCar);
+				const newInput = JSON.stringify(parseDb, null, 2);
+				fs.writeFile('models/cars.json', newInput, (error) => {
+					if (error) { throw new Error(); }
+				});
+				res.status(201).json({
+					status: 201,
+					data: newCar,
+				});
+			}
+		});
+	}
+    
 }
 /**
  * 

@@ -1,5 +1,7 @@
 import express from 'express';
 import Car from '../../controllers/car';
+import multipart from 'connect-multiparty';
+var multipartMiddleware = multipart();
 
 const router = express.Router();
 
@@ -7,7 +9,7 @@ const router = express.Router();
 const car = new Car();
 
 // creating a product car
-router.post('/', car.create);
+router.post('/',multipartMiddleware, car.create);
 
 router.get('/', car.fetch);
 
