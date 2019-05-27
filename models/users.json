@@ -34,5 +34,14 @@
     "address": "kigali",
     "password": "$2b$10$1EPTvRhtoY6BfdOYFkIR/Ofi2CD/YVZ3n96iTVUswPfBPx0/krID6",
     "is_admin": false
+  },
+  {
+    "id": 5,
+    "first_name": "shadad",
+    "last_name": "mangala",
+    "email": "shadad@gmail.com",
+    "address": "kigali",
+    "password": "$2b$10$dyqE3G1hVD4UbZ/KRp8Sa.I92cZVsRjBClhZVFS4YGPoWwIq7oaUO",
+    "is_admin": false
   }
 ]
