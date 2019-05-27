@@ -1,6 +1,7 @@
 import fs from 'fs';
 import Joi from 'joi';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // including josn file that serves as database
 const usersDb = fs.readFileSync('models/users.json', 'utf-8');
@@ -78,6 +79,18 @@ class User {
       status: 200,
       data: foundUser,
     });
+
+
+
+    jwt.sign({ id: foundUser.id, email: foundUser.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
+      const response = foundUser.token;
+      return res.status(200).json(
+      {
+        status: 200,
+        data: response
+      });
+    });
+
   }
 
   /**
