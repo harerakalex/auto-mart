@@ -48,9 +48,13 @@ class User {
           if (error) { throw new Error(); }
         });
         delete user.password;
-        res.status(201).json({
-          status: 201,
-          data: user,
+        jwt.sign({ id: user.id, email: user.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
+          user.token = token;
+          return res.status(201).json(
+          {
+            status: 201,
+            data: user
+          });
         });
       })
       .catch((error) => {
