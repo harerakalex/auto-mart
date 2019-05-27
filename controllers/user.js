@@ -75,12 +75,6 @@ class User {
     if (!foundUser) return res.status(401).json({ status: 401, error: 'Auth Failed' });
 
     delete foundUser.password;
-    res.status(200).json({
-      status: 200,
-      data: foundUser,
-    });
-
-
 
     jwt.sign({ id: foundUser.id, email: foundUser.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
       const response = foundUser.token;
