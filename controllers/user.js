@@ -35,7 +35,6 @@ class User {
         if (emailFound) return res.status(409).json({ status: 409, error: 'Email Exists' });
         const user = {
           id: parseDb.length + 1,
-          token: 'waiting',
           first_name: req.body.first_name,
           last_name: req.body.last_name,
           email: req.body.email,
@@ -77,11 +76,11 @@ class User {
     delete foundUser.password;
 
     jwt.sign({ id: foundUser.id, email: foundUser.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
-      const response = foundUser.token;
+      foundUser.token = token;
       return res.status(200).json(
       {
         status: 200,
-        data: response
+        data: foundUser
       });
     });
 

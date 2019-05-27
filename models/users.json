@@ -10,7 +10,6 @@
   },
   {
     "id": 2,
-    "token": "waiting",
     "first_name": "carlos",
     "last_name": "harera",
     "email": "harera@gmail.com",
@@ -20,7 +19,6 @@
   },
   {
     "id": 3,
-    "token": "waiting",
     "first_name": "ishimwe",
     "last_name": "yves",
     "email": "ishimwe@gmail.com",
@@ -30,7 +28,6 @@
   },
   {
     "id": 4,
-    "token": "waiting",
     "first_name": "uwase",
     "last_name": "magi",
     "email": "uwase@gmail.com",
