@@ -79,9 +79,10 @@ async create(req, res) {
 	
 	const { error } = Joi.validate(req.body, validateCar);
 	if (error) {
+		const errorMessage = error.details[d => d.message];
 		res.status(400).json({
         status: 400,
-        error: error.details[d => d.message],
+        error: errorMessage
       });
 	}
 	else{
