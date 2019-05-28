@@ -37,7 +37,9 @@ async fetch(req, res) {
 		if (query.length > 0) res.status(200).json({ status: 200, data: query });
 		else res.status(404).json({ status: 404, error: 'No search Data found for that query' });
 	} else if (keys.length === 3) {
-		const range = parseDb.filter(a => a.status === carStatus && a.price >= minPrice && a.price <= maxPrice);
+		const range = parseDb
+		.filter(a => a.status === carStatus && a.price >= minPrice && a.price <= maxPrice);
+
 		if (range.length > 0) res.status(200).json({ status: 200, data: range });
 		else res.status(404).json({ status: 404, error: 'No search Data found for that query' });
 	} else {
@@ -127,6 +129,9 @@ async create(req, res) {
  */
 async updatePrice(req, res) {
 	const updateCar = parseDb.find(c => c.id === parseInt(req.params.id, 36));
+	if (!updateCar) 
+		return res.status(404).json({status: 404,error: 'Could not find Car with a given ID',}); 
+
 	if (!req.body.price || req.body.price <= 99) {
 		res.status(400).json({
 			status: 400,
@@ -148,7 +153,9 @@ async updatePrice(req, res) {
 
 async updateStatus(req, res) {
 	const updateCar = parseDb.find(c => c.id === parseInt(req.params.id, 36));
-	if (!updateCar) return res.status(404).json({status: 404,error: 'Could not find Car with a given ID',});
+	if (!updateCar) 
+		return res.status(404).json({status: 404,error: 'Could not find Car with a given ID',});
+	
 	if (!req.body.status) {
 		res.status(400).json({
 			status: 400,
@@ -176,7 +183,8 @@ async updateStatus(req, res) {
  */
 async delete(req, res) {
 	const foundCar = parseDb.find(c => c.id === parseInt(req.params.id, 36));
-	if (!foundCar) return res.status(404).json({status: 404,error: 'Could not find Car with a given ID',});
+	if (!foundCar) 
+		return res.status(404).json({status: 404,error: 'Could not find Car with a given ID',});
 
 	const index = parseDb.indexOf(foundCar);
 	parseDb.splice(index, 1);
