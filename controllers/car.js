@@ -81,7 +81,7 @@ async create(req, res) {
 	if (error) {
 		res.status(400).json({
         status: 400,
-        error: error.details[0].message,
+        error: error.details[d => d.message],
       });
 	}
 	else{
