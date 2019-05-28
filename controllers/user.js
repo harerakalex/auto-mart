@@ -71,24 +71,37 @@ class User {
  * @param {*returns success if created} res
  */
   async login(req, res) {
-    if (!req.body.email || !req.body.password) return res.status(400).json({ status: 400, error: 'Email and Password are required' });
+    if (!req.body.email || !req.body.password) 
+      return res.status(400).json({ status: 400, error: 'Email and Password are required' });
     
     const userEmail = req.body.email;
     const userPassword = req.body.password;
-    const foundUser = parseDb.find(c => c.email === userEmail && bcrypt.compare(userPassword, c.password));
+    const foundUser = parseDb.find(c => c.email === userEmail);
     
-    if (!foundUser) return res.status(401).json({ status: 401, error: 'Auth Failed' });
+    if (!foundUser) {
+      return res.status(401).json({ status: 401, error: 'email does not exist' });
+    }
+    else{
+      const pass = bcrypt.compareSync(userPassword, foundUser.password);
+      if (pass) {
+        delete foundUser.password;
 
-    delete foundUser.password;
-
-    jwt.sign({ id: foundUser.id, email: foundUser.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
-      foundUser.token = token;
-      return res.status(200).json(
-      {
-        status: 200,
-        data: foundUser
-      });
-    });
+        jwt.sign({ id: foundUser.id, email: foundUser.email }, "secretKey", {expiresIn: '3m'}, (err, token) => {
+          foundUser.token = token;
+          return res.status(200).json(
+          {
+            status: 200,
+            data: foundUser
+          });
+        });
+      }
+      else{
+        res.status(404).json({
+          status: 404,
+          message: "invalid credential"
+        })
+      }
+    }
 
   }
 
