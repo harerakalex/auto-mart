@@ -72,9 +72,11 @@ class User {
  */
   async login(req, res) {
     if (!req.body.email || !req.body.password) return res.status(400).json({ status: 400, error: 'Email and Password are required' });
-    const { email } = req.body;
-    const { password } = req.body;
-    const foundUser = parseDb.find(c => c.email === email && bcrypt.compare(password, c.password));
+    
+    const userEmail = req.body.email;
+    const userPassword = req.body.password;
+    const foundUser = parseDb.find(c => c.email === userEmail && bcrypt.compare(userPassword, c.password));
+    
     if (!foundUser) return res.status(401).json({ status: 401, error: 'Auth Failed' });
 
     delete foundUser.password;
