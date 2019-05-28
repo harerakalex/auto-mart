@@ -31,7 +31,7 @@ the server will automatically install all the needed packages in the application
 You need a testing environment like POSTMAN
 ```
 For getting data from the app you will have to access every single API endpoint
-like  localhost:3000/api/v1/meetups
+like  localhost:3000/api/v1/
 ```
 # Built With Java script
 Node/Express
