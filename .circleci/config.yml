@@ -3,10 +3,11 @@ version: 2.1
 workflows: 
   build:
     jobs: 
-     -  build
+     - build
 
 Jobs:
   build:
-    - image: circleci/node:12.13.0
-  steps: 
-   - run echo $MY_ENV  
+    docker:
+      - image: circleci/node:12.13.0
+    steps: 
+      - run echo $MY_ENV  
