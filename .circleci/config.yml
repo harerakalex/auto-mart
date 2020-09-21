@@ -7,10 +7,10 @@ jobs:
       - image: circleci/node:12.13.0
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run: echo $MY_ENV
   test:
     docker:
-      - image: circleci/node:12.13.0
+      - image: $IMAGE
     steps:
       - checkout
       - run: echo "this is the test job"
